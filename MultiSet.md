@@ -4,7 +4,7 @@ The Multiset I am going to design is a player inventory that stores the string i
 
 Example: "potion": 3
 
-potion is the key and 3 is the value i.e the number of potions he have in his inventory. Adding 1 more potions will increse the value to 4 and so on.
+potion is the key and 3 is the value/count i.e the number of potions he have in the inventory. Adding 1 more potions will increse the value to 4 and so on.
 
 # Design Philosophy
 
@@ -31,4 +31,25 @@ User: Players those are playing the game and interact with inventories through t
   HashTable support: Key lookup ,inseration or remove using pseudo-random probing that ensures the fast access. 
 
 * Remove(item, count)
-  
+  Concept: Removes the count by 1 everytime if remove occures and if reaches 0 removes the Key.
+  Average Time Complexity: O(1)
+  Edge Cases: Removing the non-existent item returns 0 and also removal of more than present items in the Multiset counts to 0.
+  HashTable Support: Efficient lookup and update, with slot marked empty upon deletion.
+
+* Count(item)
+  Concept: Returns the count of individual item in the inventory.
+  Average Time Complexity: O(1)
+  Edge Cases: False for missing keys/item.
+
+* totalCount()
+  Concept: Returns the total number of items in the inventoy by summing up all the counts of every item.
+  Time Complexity: O(1) 
+  Edge Case: At the starting totalCount would be 0.
+
+* distinctSize()
+  Concept: Counts up all the unique items in the inventory.
+  Time Complexity: O(1)
+  Edge Case: At the starting totalCount would be 0.
+
+
+
