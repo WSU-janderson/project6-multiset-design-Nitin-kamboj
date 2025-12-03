@@ -27,7 +27,7 @@ User: Players those are playing the game and interact with inventories through t
 * Add(item, count)
   Concept: Adds count copies of item to the player inventory.
   Average Time Complexity: O(1)
-  Edge Cases: Adding items more than available space will handle the error.
+  Edge Cases: Adding items more than available space will handle the error(e.g., returning “bag is full”).
   HashTable support: Key lookup ,inseration or remove using pseudo-random probing that ensures the fast access. 
 
 * Remove(item, count)
@@ -51,5 +51,30 @@ User: Players those are playing the game and interact with inventories through t
   Time Complexity: O(1)
   Edge Case: At the starting totalCount would be 0.
 
+# Set Operations
 
+* UnionWith (Other)
+  Game Analogy: This comibines the two players inventories or merge loot drops.
+  Operation: For each Key in other, increment the count in current Multiset by other's count.
+  Conceptual Comlexity: O(other.distinctSize)
+  Edge Cases: pseudo-random handles the collisions during insertion and adding items more than available space will handle the error by returning "bag is full".
 
+# Extension Feature
+
+* Remove_item(item)
+  Purpose: Removes a specified item from the inventory completely, setting its count to 0 and deleting its key from the table.
+  New Methods: Public method remove_item(item).
+  Looks up the item in the hash table Sets its count to 0 and deletes the key.
+
+  Time Complexity: O(1)
+
+  Gameplay Value: Supports game mechanics where an enemy can steal a specific item from the player. By removing the item completely from the inventory.
+
+  pseudocode block for remove_item(item)
+
+  function remove_item(item){
+    if(table.contains(item){
+      table(item.count) = 0;
+      delete table(item);
+    })
+  }
