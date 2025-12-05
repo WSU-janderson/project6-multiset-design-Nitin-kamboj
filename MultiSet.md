@@ -1,10 +1,10 @@
 **Introduction**
 
-The Multiset I am going to design is a player inventory that stores the string item names and their count value (if the all the item appears multiple times their count will increase by 1 every time and I will be implementing this using the HashTable. Each unique will be the key and the value will count the number of times that key appears. This structure would be fast for inserting, removing and even for looking up the items.
+The Multiset I am going to design is a player inventory that stores the string item names and their count value if the all the item appears multiple times their count will increase by 1 every time and I will be implementing this using the HashTable. Each unique will be the key and the value will count the number of times that key appears. This structure would be fast for inserting, removing and even for looking up the items.
 
 Example: "potion": 3
 
-potion is the key and 3 is the value/count i.e. the number of potions he has in the inventory. Adding 1 more potions will increase the value to 4 and so on.
+"potion" is the key and 3 is the value/count i.e. the number of potions he has in the inventory. Adding 1 more potions will increase the value to 4 and so on.
 
 **Design Philosophy**
 
@@ -26,13 +26,13 @@ User: Players those are playing the game and interact with inventories through t
 
 **Add (item, count)**
 
-Concept: Adds count copies of item to the player inventory.
+Concept: Adds the item, if already available then increase the count 1 to the player inventory.
 
 Average Time Complexity: O (1)
 
 Edge Cases: Adding items more than available space will handle the error (e.g., returning “bag is full”).
 
-HashTable support: Key lookup, insertion or remove using pseudo-random probing that          ensures fast access.
+HashTable support: Key lookup, insertion or remove using pseudo-random probing that ensures fast access.
 
 **Remove (item, count)**
 
@@ -58,13 +58,13 @@ Concept: Returns the total number of items in the inventory by summing up all th
 
 Time Complexity: O (1)
 
-Edge Case: At the starting totalCount would be 0.
+Edge Case: At the starting totalCount would be 0 and it won't be more than the space available in the inventory bag.
 
 **distinctSize()**
 
 Concept: Counts up all the unique items in the inventory.
 
-Time Complexity: O (1)
+Time Complexity: O (1) a variable distinct would be used to count the distinctSize of the inventory.
 
 Edge Case: At the starting totalCount would be 0.
 
@@ -86,7 +86,7 @@ Edge Cases: pseudo-random handles the collisions during insertion and adding ite
 
 Purpose: Removes a specified item from the inventory completely, setting its count to 0 and deleting its key from the table.
 
-New Methods: Public method remove\_item(item).
+New Methods: Public method remove_item(item).
 
 Looks up the item in the hash table Sets its count to 0 and deletes the key.
 
@@ -94,9 +94,9 @@ Time Complexity: O(1)
 
 Gameplay Value: Supports game mechanics where an enemy can steal a specific item from the player. By removing the item completely from the inventory.
 
-pseudocode block for remove\_item(item)
+pseudocode block for remove_item(item)
 
-  function remove\_item(item){
+  function remove_item(item){
 
     if(table.contains(item){
 
@@ -111,6 +111,25 @@ pseudocode block for remove\_item(item)
 
 <img src="UML.png" alt="ULM Diagram of MultiSet" width="500" height="600">
 
+**Private Methods:**
+The variables table, capacity, size, and distinct are private members because they represent the internal state of the MultiSet and must be protected from direct modification:
+
+table: This is the core HashTable structure. It should only be modified through controlled operations like add or remove. Direct access could break invariants or cause inconsistent counts.
+
+size: Tracks the total number of items. It is private because its value should only be updated when items are added or removed.
+
+distinct: Tracks the number of unique items. Like size, it is private to ensure consistency and is exposed through the public method distinctSize().
+
+capacity: Represents the maximum inventory size. It is fixed in the game and cannot be changed arbitrarily. Keeping it private prevents accidental modification.
+
+Public Methods:
+add(item, count) and remove(item, count) manage inventory updates.
+
+remove_item(item) supports complete deletion of an item.
+
+count(item), totalCount(), and distinctSize() provide safe read-only access to inventory state.
+
+unionWith(other) merges two inventories.
 
 **Trade-off Analysis**
 
@@ -148,3 +167,13 @@ Union Tests: Combine two multisets and verify that all counts add up correctly.
 **Code Readability:** Methods should be short and have clear names and have all comments explaining all methods properly.
 
 **Easy To Add New Features:** Must be easy to add new features for the further updates.
+
+**Conclusion**
+The HashTable based MultiSet provides a fast, memory-efficient, and flexible solution for the players inventories.
+Strengths: The time complexity for all the major operation is O(1) and easy to add new features in case of future updates. It is also covering the Object-Oriented Principles i.e. Abstraction and the encapsulation.
+Trade-offs: It is unordered and worst case collisions.
+I belive this design is the one of the best design for the implementation of the inventory of the game.
+
+**References**
+https://en.cppreference.com/w/cpp/container/unordered_map.html
+Tapia-Fernández, S.; García-García, D.; García-Hernandez, P. Key Concepts, Weakness and Benchmark on Hash Table Data Structures. Algorithms 2022, 15, 100. https://doi.org/10.3390/a15030100
