@@ -176,4 +176,5 @@ I belive this design is the one of the best design for the implementation of the
 
 **References**
 https://en.cppreference.com/w/cpp/container/unordered_map.html
+
 Tapia-Fernández, S.; García-García, D.; García-Hernandez, P. Key Concepts, Weakness and Benchmark on Hash Table Data Structures. Algorithms 2022, 15, 100. https://doi.org/10.3390/a15030100
