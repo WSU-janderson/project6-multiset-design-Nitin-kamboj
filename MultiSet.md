@@ -169,12 +169,14 @@ Union Tests: Combine two multisets and verify that all counts add up correctly.
 **Easy To Add New Features:** Must be easy to add new features for the further updates.
 
 **Conclusion**
+
 The HashTable based MultiSet provides a fast, memory-efficient, and flexible solution for the players inventories.
 Strengths: The time complexity for all the major operation is O(1) and easy to add new features in case of future updates. It is also covering the Object-Oriented Principles i.e. Abstraction and the encapsulation.
 Trade-offs: It is unordered and worst case collisions.
 I belive this design is the one of the best design for the implementation of the inventory of the game.
 
 **References**
+
 https://en.cppreference.com/w/cpp/container/unordered_map.html
 
 Tapia-Fernández, S.; García-García, D.; García-Hernandez, P. Key Concepts, Weakness and Benchmark on Hash Table Data Structures. Algorithms 2022, 15, 100. https://doi.org/10.3390/a15030100
